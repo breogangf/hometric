@@ -12,6 +12,7 @@ void setup() {
   Serial.begin(115200);
 
   WiFi.begin(ssid, password);
+  delay(50);
   Serial.println("Connecting");
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
@@ -26,10 +27,12 @@ void setup() {
 void loop() {
   //Send an HTTP POST request every 5s
   if ((millis() - lastTime) > timerDelay) {
-    if(WiFi.status()== WL_CONNECTED){
+    if (WiFi.status() == WL_CONNECTED){
       HTTPClient http;
       http.begin(serverName);
       http.addHeader("Content-Type", "application/json");
+      //TODO retrieve DHT11 measures
+      //TODO Add JSON Serializer
       int httpResponseCode = http.POST("{\n    \"sensorName\": \"DHT11\",\n    \"measures\": [\n        {\n            \"name\": \"Temperature\",\n            \"value\": 22.0,\n            \"units\": \"Celsius\"\n        },\n        {\n            \"name\": \"Humidity\",\n            \"value\": 56,\n            \"units\": \"%\"\n        }\n    ]\n}");
       Serial.print("HTTP Response code: ");
       Serial.println(httpResponseCode);
