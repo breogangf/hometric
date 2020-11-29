@@ -6,8 +6,7 @@ const sensorController = require('./controllers/sensor')
 const { _app, mongo } = require('./config')
 const app = express()
 
-const mongodbURL = mongo.uri + mongo.db
-const options = mongo.user
+const mongodbURL = `mongodb+srv://${mongo.user}:${mongo.password}@${mongo.uri}/${mongo.db}?retryWrites=true&w=majority`
 
 mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, res) => {
     if (err) throw err

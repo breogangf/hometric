@@ -6,8 +6,8 @@ config._app = {
 }
 
 config.mongo = {
-    port: process.env.MONGODB_DB_PORT || '27017',
-    uri: `mongodb://${config._app.ip}:${process.env.MONGODB_DB_PORT || '27017'}/`,
-    db: 'sensors',
-    user: ''
+    uri: process.env.MONGO_URI,
+    db: process.env.MONGO_DB,
+    user: process.env.MONGO_USER,
+    password: process.env.MONGO_PASSWORD
 }
