@@ -1,0 +1,35 @@
+{
+  "name": "hometric",
+  "version": "1.0.0",
+  "description": "IoT Home metrics from ESP8266 + DHT11",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/breogangf/hometric.git"
+  },
+  "keywords": [
+    "IoT",
+    "domotics",
+    "arduino",
+    "sensors",
+    "esp8266",
+    "dht11"
+  ],
+  "author": {
+    "name": "Breogán González Fernández",
+    "email": "breogangf@gmail.com",
+    "url": "https://github.com/breogangf"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/breogangf/hometric/issues"
+  },
+  "homepage": "https://github.com/breogangf/hometric#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "method-override": "^3.0.0"
+  }
+}
