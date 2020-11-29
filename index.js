@@ -1,22 +1,30 @@
 const express = require('express')
-var bodyParser = require('body-parser')
-var methodOverride = require('method-override')
-var sensorController = require('./controllers/sensor')
-
+const mongoose = require('mongoose')
+const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
+const sensorController = require('./controllers/sensor')
+const { _app, mongo } = require('./config')
 const app = express()
-const port = 3000
+
+const mongodbURL = mongo.uri + mongo.db
+const options = mongo.user
+
+mongoose.connect(mongodbURL, { useNewUrlParser: true, useUnifiedTopology: true }, (err, res) => {
+    if (err) throw err
+    console.log('Connected to Database: ' + mongo.db)
+})
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 app.use(methodOverride())
 
-var api_router = express.Router()
+const api_router = express.Router()
 
 api_router.route('/sensors/data')
     .post(sensorController.addData)
 
 app.use('/api', api_router)
 
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.listen(_app.port, () => {
+    console.log(`App listening at http://localhost:${_app.port}`)
 })
